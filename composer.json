@@ -1,0 +1,38 @@
+{
+    "name": "mennen-online/shopware5-api-connector",
+    "description": "A Shopware 5 API Connector for Laravel Applications",
+    "license": "GPL-3.0-or-later",
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^9.17",
+        "mennen-online/laravel-response-models": "^1.1",
+        "guzzlehttp/guzzle": "^7.4"
+    },
+
+    "require-dev": {
+        "orchestra/testbench": "^7.11",
+        "nunomaduro/collision": "^6.2",
+        "brianium/paratest": "^6.6"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MennenOnline\\Shopware5ApiConnector\\Shopware5ApiConnectorServiceProvider"
+            ]
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "MennenOnline\\Shopware5ApiConnector\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MennenOnline\\Shopware5ApiConnector\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/testbench package:test",
+        "test-parallel": "vendor/bin/testbench package:test --parallel"
+    }
+}
