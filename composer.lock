@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f1e905c4ba3475f2b6fba614b5a43eb2",
+    "content-hash": "4a05ce9b56de76855cdead23e80c732b",
     "packages": [
         {
             "name": "brick/math",
@@ -1480,16 +1480,16 @@
         },
         {
             "name": "mennen-online/laravel-response-models",
-            "version": "1.1.1",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mennen-online/laravel-response-models.git",
-                "reference": "235605c87125ad0c2c9a522957816ee074c24886"
+                "reference": "bdbbcaa60a0a05dbb6abe0f00551811987208b85"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mennen-online/laravel-response-models/zipball/235605c87125ad0c2c9a522957816ee074c24886",
-                "reference": "235605c87125ad0c2c9a522957816ee074c24886",
+                "url": "https://api.github.com/repos/mennen-online/laravel-response-models/zipball/bdbbcaa60a0a05dbb6abe0f00551811987208b85",
+                "reference": "bdbbcaa60a0a05dbb6abe0f00551811987208b85",
                 "shasum": ""
             },
             "require": {
@@ -1510,9 +1510,9 @@
             "description": "Convert Http JSON Responses in standard JSON Format",
             "support": {
                 "issues": "https://github.com/mennen-online/laravel-response-models/issues",
-                "source": "https://github.com/mennen-online/laravel-response-models/tree/1.1.1"
+                "source": "https://github.com/mennen-online/laravel-response-models/tree/2.1.0"
             },
-            "time": "2022-06-09T06:13:27+00:00"
+            "time": "2022-07-23T09:59:17+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -1618,16 +1618,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.62.1",
+            "version": "2.63.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "01bc4cdefe98ef58d1f9cb31bdbbddddf2a88f7a"
+                "reference": "ad35dd71a6a212b98e4b87e97389b6fa85f0e347"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/01bc4cdefe98ef58d1f9cb31bdbbddddf2a88f7a",
-                "reference": "01bc4cdefe98ef58d1f9cb31bdbbddddf2a88f7a",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/ad35dd71a6a212b98e4b87e97389b6fa85f0e347",
+                "reference": "ad35dd71a6a212b98e4b87e97389b6fa85f0e347",
                 "shasum": ""
             },
             "require": {
@@ -1716,7 +1716,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-09-02T07:48:13+00:00"
+            "time": "2022-10-30T18:34:28+00:00"
         },
         {
             "name": "nette/schema",
