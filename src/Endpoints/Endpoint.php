@@ -14,7 +14,7 @@ class Endpoint extends Shopware5ApiConnector
         return $this->index($this->endpoint, $limit);
     }
 
-    public function getSingle(string $id): BaseResponseModel {
+    public function getSingle(int|string $id): BaseResponseModel {
         return $this->get($this->endpoint, $id);
     }
 

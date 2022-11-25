@@ -145,7 +145,11 @@ abstract class Shopware5ApiConnector
             return $string->toString();
         }
 
-        return $string->append('/'.$id)->toString();
+        $string = $string->append('/'.$id);
+
+        return is_string($id)
+            ? $string->append('?useNumberAsId=true')->toString()
+            : $string->toString();
     }
 
     protected function index(EndpointEnum $endpoint, int $limit = null): BaseResponseModel {
@@ -163,7 +167,7 @@ abstract class Shopware5ApiConnector
         );
     }
 
-    protected function get(EndpointEnum $endpoint, string $id): BaseResponseModel {
+    protected function get(EndpointEnum $endpoint, int|string $id): BaseResponseModel {
         $this->auth = false;
 
         $this->id = $id;
