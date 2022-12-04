@@ -33,31 +33,14 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
           coverage: none
-      - name: Config Laravel Spark
-        run: echo '${{ secrets.COMPOSER_AUTH_JSON }}' > $GITHUB_WORKSPACE/auth.json
 
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-interaction --no-progress
 
-      - name: Install NPM dependencies
-        run: npm install
-
-      - name: Build Frontend
-        run: npm run build
-
-      - name: Copy environment file
-        run: cp .env.example .env
-
-      - name: Generate app key
-        run: php artisan key:generate
-
       - name: Execute tests
-        run: vendor/bin/phpunit
+        run: vendor/bin/testbench package:test
         env:
           SW5_CUSTOMER_URL: https://lederband-hamburg.de
-          SW5_CLIENT_ID: Henning
-          SW5_CLIENT_SECRET: bTsQHGrVzFyNOlFsGRXeTy3o7Unsu7J2GkT1VVy9
-          SW6_CUSTOMER_URL: https://iuvascare.de
-          SW6_CLIENT_ID: SWIAQ1G4NEQ2ZKNSS3HROTFHRA
-          SW6_CLIENT_SECRET: WGdlMUlIMjV5VWdGM0x5U3NQcTJOZ1ZBZ21UQ3FjcndxVHRMWGo
+          SW5_USERNAME: Henning
+          SW5_PASSWORD: bTsQHGrVzFyNOlFsGRXeTy3o7Unsu7J2GkT1VVy9
 
