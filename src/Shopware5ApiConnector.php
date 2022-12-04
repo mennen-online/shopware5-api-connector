@@ -43,9 +43,9 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 abstract class Shopware5ApiConnector
 {
-    protected const SHOPWARE6_CLIENT_ID = 'shopware6.client_id';
+    protected const SHOPWARE6_CLIENT_ID = 'shopware5.client_id';
 
-    protected const SHOPWARE6_CLIENT_SECRET = 'shopware6.client_secret';
+    protected const SHOPWARE6_CLIENT_SECRET = 'shopware5.client_secret';
 
     public function __construct(
         protected PendingRequest|null $client = null,
@@ -60,7 +60,7 @@ abstract class Shopware5ApiConnector
         protected EndpointEnum|null $endpoint = null,
     ) {
         if($this->client === null) {
-            $baseUrl = $this->url ?? config('shopware6.url');
+            $baseUrl = $this->url ?? config('shopware5.url');
 
             $this->client = Http::baseUrl($baseUrl.'/api')
                 ->withToken(base64_encode($this->client_id.':'.$this->client_secret), 'Basic')
@@ -163,7 +163,7 @@ abstract class Shopware5ApiConnector
         );
     }
 
-    protected function get(EndpointEnum $endpoint, string $id): BaseResponseModel {
+    protected function get(EndpointEnum $endpoint, int|string $id): BaseResponseModel {
         $this->auth = false;
 
         $this->id = $id;
