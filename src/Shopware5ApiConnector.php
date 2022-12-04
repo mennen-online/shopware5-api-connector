@@ -2,19 +2,19 @@
 
 namespace MennenOnline\Shopware5ApiConnector;
 
-use Illuminate\Support\Arr;
-use MennenOnline\Shopware5ApiConnector\Enums\Model;
 use GuzzleHttp\Promise\PromiseInterface;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\Response;
-use Illuminate\Support\Carbon;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use MennenOnline\LaravelResponseModels\Models\BaseModel;
-use MennenOnline\Shopware5ApiConnector\Enums\EndpointEnum;
-use MennenOnline\Shopware5ApiConnector\Exceptions\Connector\EmptyShopware5ResponseException;
-use MennenOnline\Shopware5ApiConnector\Exceptions\Shopware5EndpointNotFoundException;
 use MennenOnline\Shopware5ApiConnector\Endpoints\Endpoint;
+use MennenOnline\Shopware5ApiConnector\Enums\EndpointEnum;
+use MennenOnline\Shopware5ApiConnector\Enums\Model;
+use MennenOnline\Shopware5ApiConnector\Exceptions\Connector\EmptyShopware5ResponseException;
+use MennenOnline\Shopware5ApiConnector\Exceptions\NoShopware5CredentialsProvidedException;
+use MennenOnline\Shopware5ApiConnector\Exceptions\Shopware5EndpointNotFoundException;
 use MennenOnline\Shopware5ApiConnector\Models\AuthResponseModel;
 use MennenOnline\Shopware5ApiConnector\Models\BaseResponseModel;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -27,26 +27,41 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  * @property string|null $id
  * @property bool $auth = false
  * @property string|null $url
- * @property string|null $client_id
- * @property string|null $client_secret
+ * @property string|null $username
+ * @property string|null $password
  * @property EndpointEnum|null $endpoint
  *
- * @method Shopware5ApiConnector category(Shopware5ApiConnector|null $client = null, string|null $url = null, string|null $client_id = null, string|null $client_secret = null)
- * @method Shopware5ApiConnector customerGroup(Shopware5ApiConnector|null $client = null, string|null $url = null, string|null $client_id = null, string|null $client_secret = null)
- * @method Shopware5ApiConnector media(Shopware5ApiConnector|null $client = null, string|null $url = null, string|null $client_id = null, string|null $client_secret = null)
- * @method Shopware5ApiConnector product(Shopware5ApiConnector|null $client = null, string|null $url = null, string|null $client_id = null, string|null $client_secret = null)
- * @method Shopware5ApiConnector propertyGroup(Shopware5ApiConnector|null $client = null, string|null $url = null, string|null $client_id = null, string|null $client_secret = null)
- * @method Shopware5ApiConnector propertyGroupOption(Shopware5ApiConnector|null $client = null, string|null $url = null, string|null $client_id = null, string|null $client_secret = null)
- * @method Shopware5ApiConnector tax(Shopware5ApiConnector|null $client = null, string|null $url = null, string|null $client_id = null, string|null $client_secret = null)
- * @method Shopware5ApiConnector taxRule(Shopware5ApiConnector|null $client = null, string|null $url = null, string|null $client_id = null, string|null $client_secret = null)
+ * @method Shopware5ApiConnector addresses(Shopware5ApiConnector|null $client = null, string|null $url = null, string|null $username = null, string|null $password = null)
+ * @method Shopware5ApiConnector articles(Shopware5ApiConnector|null $client = null, string|null $url = null, string|null $username = null, string|null $password = null)
+ * @method Shopware5ApiConnector cache(Shopware5ApiConnector|null $client = null, string|null $url = null, string|null $username = null, string|null $password = null)
+ * @method Shopware5ApiConnector categories(Shopware5ApiConnector|null $client = null, string|null $url = null, string|null $username = null, string|null $password = null)
+ * @method Shopware5ApiConnector countries(Shopware5ApiConnector|null $client = null, string|null $url = null, string|null $username = null, string|null $password = null)
+ * @method Shopware5ApiConnector customerGroup(Shopware5ApiConnector|null $client = null, string|null $url = null, string|null $username = null, string|null $password = null)
+ * @method Shopware5ApiConnector generateArticleImages(Shopware5ApiConnector|null $client = null, string|null $url = null, string|null $username = null, string|null $password = null)
+ * @method Shopware5ApiConnector manufacturers(Shopware5ApiConnector|null $client = null, string|null $url = null, string|null $username = null, string|null $password = null)
+ * @method Shopware5ApiConnector media(Shopware5ApiConnector|null $client = null, string|null $url = null, string|null $username = null, string|null $password = null)
+ * @method Shopware5ApiConnector orders(Shopware5ApiConnector|null $client = null, string|null $url = null, string|null $username = null, string|null $password = null)
+ * @method Shopware5ApiConnector paymentMethods(Shopware5ApiConnector|null $client = null, string|null $url = null, string|null $username = null, string|null $password = null)
+ * @method Shopware5ApiConnector propertyGroups(Shopware5ApiConnector|null $client = null, string|null $url = null, string|null $username = null, string|null $password = null)
+ * @method Shopware5ApiConnector shops(Shopware5ApiConnector|null $client = null, string|null $url = null, string|null $username = null, string|null $password = null)
+ * @method Shopware5ApiConnector translations(Shopware5ApiConnector|null $client = null, string|null $url = null, string|null $username = null, string|null $password = null)
+ * @method Shopware5ApiConnector users(Shopware5ApiConnector|null $client = null, string|null $url = null, string|null $username = null, string|null $password = null)
+ * @method Shopware5ApiConnector version(Shopware5ApiConnector|null $client = null, string|null $url = null, string|null $username = null, string|null $password = null)
+ * @method Shopware5ApiConnector product(Shopware5ApiConnector|null $client = null, string|null $url = null, string|null $username = null, string|null $password = null)
+ * @method Shopware5ApiConnector propertyGroup(Shopware5ApiConnector|null $client = null, string|null $url = null, string|null $username = null, string|null $password = null)
+ * @method Shopware5ApiConnector propertyGroupOption(Shopware5ApiConnector|null $client = null, string|null $url = null, string|null $username = null, string|null $password = null)
+ * @method Shopware5ApiConnector tax(Shopware5ApiConnector|null $client = null, string|null $url = null, string|null $username = null, string|null $password = null)
+ * @method Shopware5ApiConnector taxRule(Shopware5ApiConnector|null $client = null, string|null $url = null, string|null $username = null, string|null $password = null)
  */
-
 abstract class Shopware5ApiConnector
 {
-    protected const SHOPWARE6_CLIENT_ID = 'shopware5.client_id';
+    protected const SHOPWARE5_USERNAME = 'shopware5.username';
 
-    protected const SHOPWARE6_CLIENT_SECRET = 'shopware5.client_secret';
+    protected const SHOPWARE5_PASSWORD = 'shopware5.password';
 
+    /**
+     * @throws NoShopware5CredentialsProvidedException
+     */
     public function __construct(
         protected PendingRequest|null $client = null,
         protected int|null $expires_in = null,
@@ -55,77 +70,108 @@ abstract class Shopware5ApiConnector
         protected string|null $id = null,
         protected bool $auth = false,
         protected string|null $url = null,
-        protected string|null $client_id = null,
-        protected string|null $client_secret = null,
+        protected string|null $username = null,
+        protected string|null $password = null,
         protected EndpointEnum|null $endpoint = null,
+        protected bool $initializeLater = false,
     ) {
-        if($this->client === null) {
-            $baseUrl = $this->url ?? config('shopware5.url');
-
-            $this->client = Http::baseUrl($baseUrl.'/api')
-                ->withToken(base64_encode($this->client_id.':'.$this->client_secret), 'Basic')
-                ->acceptJson();
+        if ($this->client === null && ! $this->initializeLater) {
+            $this->initialize();
         }
     }
 
-    public function getExpiresIn(): int|null {
-        return $this->expires_in;
+    public function initialize(string|null $url = null, string|null $username = null, string|null $password = null): self
+    {
+        if ($url) {
+            $this->url = $url;
+        } else {
+            $this->url = config('shopware5.url');
+        }
+
+        if ($username) {
+            $this->username = $username;
+        }
+
+        if ($password) {
+            $this->password = $password;
+        }
+
+        $baseUrl = $this->url;
+
+        if (
+            ! $this->username || ! $this->password
+        ) {
+            throw new NoShopware5CredentialsProvidedException('Username or Password missing');
+        }
+
+        $this->client = Http::baseUrl($baseUrl.'/api')
+            ->withToken(base64_encode($this->username.':'.$this->password), 'Basic')
+            ->acceptJson();
+
+        return $this;
     }
 
-    public function getToken(): string|null {
-        return $this->token;
+    public function getEndpoint(): EndpointEnum|null
+    {
+        return $this->endpoint;
     }
 
-    public function getClient(): PendingRequest {
+    public function getClient(): PendingRequest
+    {
         return $this->client;
     }
 
-    public function __call(string $name, array $arguments): Shopware5ApiConnector|AuthResponseModel|BaseResponseModel {
-        if(method_exists($this, $name)) {
+    public function __call(string $name, array $arguments): Shopware5ApiConnector|AuthResponseModel|BaseResponseModel
+    {
+        if (method_exists($this, $name)) {
             return $this->$name($arguments);
         }
         $instance = self::__callStatic($name, $arguments);
-        if(!$instance) {
-            throw new Shopware5EndpointNotFoundException("Shopware 5 Endpoint " . $name . " not available yet");
+        if (! $instance) {
+            throw new Shopware5EndpointNotFoundException('Shopware 5 Endpoint '.$name.' not available yet');
         }
+
         return new (get_class($instance)($this->client, $this->expires_in, $this->token));
     }
 
-    public static function __callStatic(string $name, array $arguments): Shopware5ApiConnector|null {
+    public static function __callStatic(string $name, array $arguments): Shopware5ApiConnector|null
+    {
         return new Endpoint(
             client       : Arr::get($arguments, 'client'),
-            client_id    : Arr::get($arguments, 'client_id'),
-            client_secret: Arr::get($arguments, 'client_secret'),
+            username    : Arr::get($arguments, 'username'),
+            password: Arr::get($arguments, 'password'),
             endpoint     : $name
         );
     }
 
-    private function logger(PromiseInterface|Response $response): BaseResponseModel|AuthResponseModel|null {
+    private function logger(PromiseInterface|Response $response): BaseResponseModel|AuthResponseModel|null
+    {
         $logData = [
             'status' => $response->status(),
             'response' => $response->object(),
         ];
 
-        if($response->object() === null) {
-            Log::warning("The Response was Empty", $logData);
-            throw new EmptyShopware5ResponseException("The Response was Empty", $response->status());
+        if ($response->object() === null) {
+            Log::warning('The Response was Empty', $logData);
+            throw new EmptyShopware5ResponseException('The Response was Empty', $response->status());
         }
 
-        if($response->successful()) {
-            if(config('app.debug')) {
-                Log::info("Shopware 5 API Call OK", $logData);
+        if ($response->successful()) {
+            if (config('app.debug')) {
+                Log::info('Shopware 5 API Call OK', $logData);
             }
         } else {
-            Log::emergency("Shopware 5 API Call not OK", $logData);
+            Log::emergency('Shopware 5 API Call not OK', $logData);
 
-            return match($response->status()) {
-                404 => throw new NotFoundHttpException("The requested URL cannot be found"),
+            return match ($response->status()) {
+                404 => throw new NotFoundHttpException('The requested URL cannot be found'),
                 default => $this->auth ? new AuthResponseModel() : new BaseResponseModel(Model::EMPTY)
             };
         }
 
-        if($this->auth) {
+        if ($this->auth) {
             $this->auth = false;
+
             return new AuthResponseModel($response->object());
         }
 
@@ -136,34 +182,38 @@ abstract class Shopware5ApiConnector
         );
     }
 
-    private function buildUrl(EndpointEnum $endpoint, int|string|null $id = null): string {
+    private function buildUrl(EndpointEnum $endpoint, int|string|null $id = null): string
+    {
         $string = str(EndpointEnum::convertEndpointToUrl($endpoint));
 
         $this->id = $id;
 
-        if(!$id) {
+        if (! $id) {
             return $string->toString();
         }
 
         return $string->append('/'.$id)->toString();
     }
 
-    protected function index(EndpointEnum $endpoint, int $limit = null): BaseResponseModel {
+    protected function index(EndpointEnum $endpoint, int $limit = null): BaseResponseModel
+    {
         $this->auth = false;
 
-        if($limit === null) {
+        if ($limit === null) {
             $limitRequest = $this->client->get(str($this->buildUrl($endpoint))->append('?'.Arr::query(['limit' => $limit]))->toString());
 
             $limitResponse = $limitRequest->object();
 
             $limit = $limitResponse?->total;
         }
+
         return $this->logger(
-            $this->client->get(str($this->buildUrl($endpoint))->append('?' . Arr::query(['limit' => $limit]))->toString())
+            $this->client->get(str($this->buildUrl($endpoint))->append('?'.Arr::query(['limit' => $limit]))->toString())
         );
     }
 
-    protected function get(EndpointEnum $endpoint, int|string $id): BaseResponseModel {
+    protected function get(EndpointEnum $endpoint, int|string $id): BaseResponseModel
+    {
         $this->auth = false;
 
         $this->id = $id;
@@ -173,7 +223,8 @@ abstract class Shopware5ApiConnector
         );
     }
 
-    protected function post(EndpointEnum $endpoint, array $data): BaseResponseModel|AuthResponseModel {
+    protected function post(EndpointEnum $endpoint, array $data): BaseResponseModel|AuthResponseModel
+    {
         return $this->logger(
             $this->client->post($this->buildUrl($endpoint), $data)
         );

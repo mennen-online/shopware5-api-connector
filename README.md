@@ -4,8 +4,6 @@
 
 A Connector for Shopware 5 API in Laravel Applications.
 
-All Endpoints from Shopware 5 API are available as Enum, which is needed to Initialize the Connector
-
 ## Installation
 
 Install it through composer:
@@ -19,26 +17,42 @@ Run:
 php artisan vendor:publish --provider=Shopware5ApiConnectorServiceProvider
 ```
 
+## Usage
+
 To connect a single Shop, add to your .env the following Keys:
 ```
 SW5_HOST=<URL TO SHOP>
-SW5_CLIENT_ID=<CLIENT ID>
-SW5_CLIENT_SECRET=<CLIENT SECRET>
+SW5_USERNAME=<USERNAME>
+SW5_PASSWORD=<PASSWORD>
 ```
 
 It is also Possible to call the connector with following scheme e.g. authentication:
 
 ```php
-use MennenOnline\Shopware6ApiConnector\Endpoints\Endpoint;
-use MennenOnline\Shopware6ApiConnector\Enums\EndpointEnum;
+use MennenOnline\Shopware5ApiConnector\Endpoints\Endpoint;
+use MennenOnline\Shopware5ApiConnector\Enums\EndpointEnum;
 
 $instance = new Endpoint(
     url: 'http://your-shop.url',
-    client_id: 'your-username',
-    client_secret: 'your-password',
+    username: 'your-username',
+    password: 'your-password',
     endpoint: EndpointEnum::ARTICLES
 );
 ```
+
+For more flexible usage, it is now possible, to use Facades:
+
+```php
+use MennenOnline\Shopware5ApiConnector\Facades\AddressFacade;
+
+$instance = AddressFacade::initialize(
+    url: 'http://your-shop.url',
+    username: 'your-username',
+    password: 'your-password'
+)
+```
+
+This will return a Instance of Shopware5ApiConnector with loaded Address Endpoint.
 
 ## Endpoints
 
@@ -78,4 +92,23 @@ $instance = new Endpoint(
     case VARIANTS;
 
     case VERSION;
+```
+
+## Facades
+
+```php
+use MennenOnline\Shopware5ApiConnector\Facades\AddressFacade;
+use MennenOnline\Shopware5ApiConnector\Facades\ArticleFacade;
+use MennenOnline\Shopware5ApiConnector\Facades\CacheFacade;
+use MennenOnline\Shopware5ApiConnector\Facades\CountryFacade;
+use MennenOnline\Shopware5ApiConnector\Facades\CustomerFacade;
+use MennenOnline\Shopware5ApiConnector\Facades\CustomerGroupFacade;
+use MennenOnline\Shopware5ApiConnector\Facades\GenerateArticleImageFacade;
+use MennenOnline\Shopware5ApiConnector\Facades\ManufacturerFacade;
+use MennenOnline\Shopware5ApiConnector\Facades\OrderFacade;
+use MennenOnline\Shopware5ApiConnector\Facades\PaymentMethodFacade;
+use MennenOnline\Shopware5ApiConnector\Facades\PropertyGroupFacade;
+use MennenOnline\Shopware5ApiConnector\Facades\ShopFacade;
+use MennenOnline\Shopware5ApiConnector\Facades\VariantFacade;
+use MennenOnline\Shopware5ApiConnector\Facades\VersionFacade;
 ```

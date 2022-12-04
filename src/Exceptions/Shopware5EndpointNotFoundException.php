@@ -6,5 +6,4 @@ use Exception;
 
 class Shopware5EndpointNotFoundException extends Exception
 {
-
 }
