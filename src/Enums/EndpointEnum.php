@@ -40,7 +40,8 @@ enum EndpointEnum
 
     case VERSION;
 
-    public static function convertEndpointToUrl(EndpointEnum $endpoint): string {
+    public static function convertEndpointToUrl(EndpointEnum $endpoint): string
+    {
         $url = str($endpoint->name);
 
         $url = $url->replace('_', '-');

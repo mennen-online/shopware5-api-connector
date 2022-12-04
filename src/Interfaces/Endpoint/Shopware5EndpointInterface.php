@@ -2,15 +2,13 @@
 
 namespace MennenOnline\Shopware5ApiConnector\Interfaces\Endpoint;
 
-use GuzzleHttp\Promise\PromiseInterface;
-use Illuminate\Http\Client\Response;
 use MennenOnline\Shopware5ApiConnector\Models\BaseResponseModel;
 
 interface Shopware5EndpointInterface
 {
     public function getAll(int|null $limit = null): BaseResponseModel;
 
-    public function getSingle(string $id): BaseResponseModel;
+    public function getSingle(int|string $id): BaseResponseModel;
 
     public function create(array $data = []): BaseResponseModel;
 

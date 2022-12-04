@@ -9,21 +9,24 @@ class ConfigTest extends BaseTest
     /**
      * @test
      */
-    public function it_has_shopware6_url() {
+    public function it_has_shopware6_url()
+    {
         $this->assertNotNull(config('shopware5.url'));
     }
 
     /**
      * @test
      */
-    public function it_has_shopware6_client_id() {
-        $this->assertNotNull(config('shopware5.client_id'));
+    public function it_has_shopware5_username()
+    {
+        $this->assertNotNull(config('shopware5.username'));
     }
 
     /**
      * @test
      */
-    public function it_has_shopware6_client_secret() {
-        $this->assertNotNull(config('shopware5.client_secret'));
+    public function it_has_shopware5_password()
+    {
+        $this->assertNotNull(config('shopware5.password'));
     }
 }
