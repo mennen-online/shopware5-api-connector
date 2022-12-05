@@ -1,6 +1,6 @@
 <?php
 
-namespace MennenOnline\Shopware5ApiConnector\Tests\Feature\Endpoints;
+namespace Feature\Endpoints;
 
 use Illuminate\Support\Facades\Http;
 use MennenOnline\Shopware5ApiConnector\Facades\CategoryFacade;
