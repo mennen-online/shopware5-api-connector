@@ -66,7 +66,7 @@ abstract class Shopware5ApiConnector
         protected PendingRequest|null $client = null,
         protected int|null $expires_in = null,
         protected string|null $token = null,
-        protected BaseModel|null $responseModel = null,
+        protected string|null $responseModel = null,
         protected string|null $id = null,
         protected bool $auth = false,
         protected string|null $url = null,

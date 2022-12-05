@@ -58,7 +58,7 @@ class BaseResponseModel extends BaseModel
             if($mapClassForData && !$this->mapClassForDataExists($mapClassForData)) {
                 return $this;
             } elseif($mapClassForData !== null) {
-                $this->data = collect($attributes['data'])->mapInto($mapClassForData);
+                $this->data = new $mapClassForData($attributes['data']);
             } else {
                 $object = new stdClass();
                 collect($attributes['data'])->each(function ($value, $key) use ($object) {
