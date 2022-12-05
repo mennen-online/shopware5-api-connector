@@ -33,15 +33,9 @@ class BaseResponseModel extends BaseModel
         $attributes = (array) $attributes;
 
         if ($model === Model::INDEX) {
-            if ($mapClassForData && ! class_exists($mapClassForData)) {
-                Log::warning('Not existing Map Class used', [
-                    'fqcn' => $mapClassForData,
-                ]);
-
-                return;
-            }
-
-            if ($mapClassForData !== null) {
+            if ($mapClassForData && !$this->mapClassForDataExists($mapClassForData)) {
+                return $this;
+            }elseif ($mapClassForData !== null) {
                 $this->data = collect($attributes['data'])->mapInto($mapClassForData);
             } else {
                 $this->data = collect($attributes['data'])->map(function ($element) {
@@ -61,12 +55,27 @@ class BaseResponseModel extends BaseModel
         }
 
         if ($model === Model::SINGLE) {
-            $object = new stdClass();
-            collect($attributes['data'])->each(function ($value, $key) use ($object) {
-                $object->$key = $value;
-            });
-
-            $this->data = $object;
+            if($mapClassForData && !$this->mapClassForDataExists($mapClassForData)) {
+                return $this;
+            } elseif($mapClassForData !== null) {
+                $this->data = collect($attributes['data'])->mapInto($mapClassForData);
+            } else {
+                $object = new stdClass();
+                collect($attributes['data'])->each(function ($value, $key) use ($object) {
+                    $object->$key = $value;
+                });
+                $this->data = $object;
+            }
         }
+    }
+
+    private function mapClassForDataExists(string $mapClassForData): bool {
+        if(! class_exists($mapClassForData)) {
+            Log::warning('Not existing Map Class used', [
+                'fqcn' => $mapClassForData,
+            ]);
+            return false;
+        }
+        return true;
     }
 }
