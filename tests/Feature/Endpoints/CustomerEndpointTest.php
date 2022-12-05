@@ -3,11 +3,8 @@
 namespace MennenOnline\Shopware5ApiConnector\Tests\Feature\Endpoints;
 
 use Illuminate\Support\Facades\Http;
-use MennenOnline\Shopware5ApiConnector\Facades\CountryFacade;
 use MennenOnline\Shopware5ApiConnector\Facades\CustomerFacade;
 use MennenOnline\Shopware5ApiConnector\Models\BaseResponseModel;
-use MennenOnline\Shopware5ApiConnector\Models\Endpoints\Country\CountryListModel;
-use MennenOnline\Shopware5ApiConnector\Models\Endpoints\Country\CountrySingleModel;
 use MennenOnline\Shopware5ApiConnector\Models\Endpoints\Customer\CustomerListModel;
 use MennenOnline\Shopware5ApiConnector\Models\Endpoints\Customer\CustomerSingleModel;
 use MennenOnline\Shopware5ApiConnector\Tests\BaseTest;

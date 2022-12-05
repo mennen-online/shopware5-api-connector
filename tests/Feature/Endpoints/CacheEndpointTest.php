@@ -3,7 +3,6 @@
 namespace MennenOnline\Shopware5ApiConnector\Tests\Feature\Endpoints;
 
 use Illuminate\Support\Facades\Http;
-use MennenOnline\Shopware5ApiConnector\Facades\ArticleFacade;
 use MennenOnline\Shopware5ApiConnector\Facades\CacheFacade;
 use MennenOnline\Shopware5ApiConnector\Models\BaseResponseModel;
 use MennenOnline\Shopware5ApiConnector\Models\Endpoints\Cache\CacheListModel;
