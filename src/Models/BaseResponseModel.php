@@ -22,7 +22,7 @@ class BaseResponseModel extends BaseModel
         'errors',
     ];
 
-    public function __construct(Model $model, array|object|null $attributes = [], string|null $mapClassForData = null)
+    public function __construct(Model $model = Model::SINGLE, array|object|null $attributes = [], string|null $mapClassForData = null)
     {
         parent::__construct($attributes);
 
@@ -36,7 +36,9 @@ class BaseResponseModel extends BaseModel
             if ($mapClassForData && !$this->mapClassForDataExists($mapClassForData)) {
                 return $this;
             }elseif ($mapClassForData !== null) {
-                $this->data = collect($attributes['data'])->mapInto($mapClassForData);
+                $this->data = collect($attributes['data'])->map(function($entry) use($mapClassForData) {
+                    return new $mapClassForData(attributes: $entry);
+                });
             } else {
                 $this->data = collect($attributes['data'])->map(function ($element) {
                     if (! is_array($element)) {
@@ -58,10 +60,10 @@ class BaseResponseModel extends BaseModel
             if($mapClassForData && !$this->mapClassForDataExists($mapClassForData)) {
                 return $this;
             } elseif($mapClassForData !== null) {
-                $this->data = new $mapClassForData($attributes['data']);
+                $this->data = new $mapClassForData(attributes: $attributes['data'] ?? $attributes);
             } else {
                 $object = new stdClass();
-                collect($attributes['data'])->each(function ($value, $key) use ($object) {
+                collect($attributes['data'] ?? $attributes)->each(function ($value, $key) use ($object) {
                     $object->$key = $value;
                 });
                 $this->data = $object;

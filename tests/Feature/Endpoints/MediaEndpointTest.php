@@ -18,7 +18,7 @@ class MediaEndpointTest extends BaseTest
      * @test
      */
     public function it_can_retrieve_a_list_of_media() {
-        $response = file_get_contents('./Responses/Media/list.json');
+        $response = file_get_contents(__DIR__.'/Responses/Media/list.json');
 
         Http::fake([
             '*' => Http::response((array)json_decode($response))
@@ -35,7 +35,7 @@ class MediaEndpointTest extends BaseTest
      * @test
      */
     public function it_can_retrieve_a_single_media() {
-        $response = file_get_contents('./Responses/Media/single.json');
+        $response = file_get_contents(__DIR__.'/Responses/Media/single.json');
 
         Http::fake([
             '*' => Http::response((array)json_decode($response))

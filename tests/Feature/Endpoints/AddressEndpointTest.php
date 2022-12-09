@@ -15,7 +15,7 @@ class AddressEndpointTest extends BaseTest
      * @test
      */
     public function it_can_retrieve_a_list_of_addresses() {
-        $response = file_get_contents('./Responses/Address/list.json');
+        $response = file_get_contents(__DIR__.'/Responses/Address/list.json');
 
         Http::fake([
             '*' => Http::response((array)json_decode($response))
@@ -32,7 +32,7 @@ class AddressEndpointTest extends BaseTest
      * @test
      */
     public function it_can_retrieve_a_single_address() {
-        $response = file_get_contents('./Responses/Address/single.json');
+        $response = file_get_contents(__DIR__.'/Responses/Address/single.json');
         
         Http::fake([
             '*' => Http::response((array)json_decode($response))

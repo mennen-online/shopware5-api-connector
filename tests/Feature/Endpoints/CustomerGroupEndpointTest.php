@@ -15,7 +15,7 @@ class CustomerGroupEndpointTest extends BaseTest
      * @test
      */
     public function it_can_retrieve_a_list_of_customer_group() {
-        $response = file_get_contents('./Responses/CustomerGroup/list.json');
+        $response = file_get_contents(__DIR__.'/Responses/CustomerGroup/list.json');
 
         Http::fake([
             '*' => Http::response((array)json_decode($response))
@@ -32,7 +32,7 @@ class CustomerGroupEndpointTest extends BaseTest
      * @test
      */
     public function it_can_retrieve_a_single_customer_group() {
-        $response = file_get_contents('./Responses/CustomerGroup/single.json');
+        $response = file_get_contents(__DIR__.'/Responses/CustomerGroup/single.json');
 
         Http::fake([
             '*' => Http::response((array)json_decode($response))

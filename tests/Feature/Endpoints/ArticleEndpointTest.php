@@ -15,7 +15,7 @@ class ArticleEndpointTest extends BaseTest
      * @test
      */
     public function it_can_retrieve_a_list_of_articles() {
-        $response = file_get_contents('./Responses/Article/list.json');
+        $response = file_get_contents(__DIR__.'/Responses/Article/list.json');
 
         Http::fake([
             '*' => Http::response((array)json_decode($response))
@@ -32,7 +32,7 @@ class ArticleEndpointTest extends BaseTest
      * @test
      */
     public function it_can_retrieve_a_single_article() {
-        $response = file_get_contents('./Responses/Article/single.json');
+        $response = file_get_contents(__DIR__.'/Responses/Article/single.json');
 
         Http::fake([
             '*' => Http::response((array)json_decode($response))

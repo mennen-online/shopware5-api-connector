@@ -15,7 +15,7 @@ class CategoryEndpointTest extends BaseTest
      * @test
      */
     public function it_can_retrieve_a_list_of_categories() {
-        $response = file_get_contents('./Responses/Category/list.json');
+        $response = file_get_contents(__DIR__.'/Responses/Category/list.json');
 
         Http::fake([
             '*' => Http::response((array)json_decode($response))
@@ -32,7 +32,7 @@ class CategoryEndpointTest extends BaseTest
      * @test
      */
     public function it_can_retrieve_a_single_category() {
-        $response = file_get_contents('./Responses/Category/single.json');
+        $response = file_get_contents(__DIR__.'/Responses/Category/single.json');
 
         Http::fake([
             '*' => Http::response((array)json_decode($response))

@@ -15,7 +15,7 @@ class ManufacturerEndpointTest extends BaseTest
      * @test
      */
     public function it_can_retrieve_a_list_of_manufacturer() {
-        $response = file_get_contents('./Responses/Manufacturer/list.json');
+        $response = file_get_contents(__DIR__.'/Responses/Manufacturer/list.json');
 
         Http::fake([
             '*' => Http::response((array)json_decode($response))
@@ -32,7 +32,7 @@ class ManufacturerEndpointTest extends BaseTest
      * @test
      */
     public function it_can_retrieve_a_single_manufacturer() {
-        $response = file_get_contents('./Responses/Manufacturer/single.json');
+        $response = file_get_contents(__DIR__.'/Responses/Manufacturer/single.json');
 
         Http::fake([
             '*' => Http::response((array)json_decode($response))
