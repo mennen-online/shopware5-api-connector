@@ -3,14 +3,8 @@
 namespace MennenOnline\Shopware5ApiConnector\Tests\Feature\Endpoints;
 
 use Illuminate\Support\Facades\Http;
-use MennenOnline\Shopware5ApiConnector\Facades\OrderFacade;
-use MennenOnline\Shopware5ApiConnector\Facades\PaymentMethodFacade;
 use MennenOnline\Shopware5ApiConnector\Facades\PropertyGroupFacade;
 use MennenOnline\Shopware5ApiConnector\Models\BaseResponseModel;
-use MennenOnline\Shopware5ApiConnector\Models\Endpoints\Order\OrderListModel;
-use MennenOnline\Shopware5ApiConnector\Models\Endpoints\Order\OrderSingleModel;
-use MennenOnline\Shopware5ApiConnector\Models\Endpoints\PaymentMethod\PaymentMethodListModel;
-use MennenOnline\Shopware5ApiConnector\Models\Endpoints\PaymentMethod\PaymentMethodSingleModel;
 use MennenOnline\Shopware5ApiConnector\Models\Endpoints\PropertyGroup\PropertyGroupListModel;
 use MennenOnline\Shopware5ApiConnector\Models\Endpoints\PropertyGroup\PropertyGroupSingleModel;
 use MennenOnline\Shopware5ApiConnector\Tests\BaseTest;
