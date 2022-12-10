@@ -18,16 +18,12 @@
         "laravel": {
             "providers": [
                 "MennenOnline\\Shopware5ApiConnector\\Shopware5ApiConnectorServiceProvider"
-            ],
-            "facades": [
-                "MennenOnline\\Shopware5ApiConnector\\Facades\\ProductFacade"
             ]
         }
     },
     "autoload": {
         "psr-4": {
-            "MennenOnline\\Shopware5ApiConnector\\": "src/",
-            "MennenOnline\\Shopware5ApiConnector\\Models\\":  "src/Models/"
+            "MennenOnline\\Shopware5ApiConnector\\": "src/"
         }
     },
     "autoload-dev": {
