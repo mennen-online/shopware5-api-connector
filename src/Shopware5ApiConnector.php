@@ -76,7 +76,7 @@ abstract class Shopware5ApiConnector
         protected bool $initializeLater = false,
     ) {
         if ($this->client === null && ! $this->initializeLater) {
-            $this->initialize();
+            $this->initialize($url, $username, $password);
         }
     }
 
