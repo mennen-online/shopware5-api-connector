@@ -15,7 +15,7 @@ class PropertyGroupEndpointTest extends BaseTest
      * @test
      */
     public function it_can_retrieve_a_list_of_property_groups() {
-        $response = file_get_contents(__DIR__.'/Responses/PropertyGroup/list.json');
+        $response = file_get_contents(__DIR__.'/../Responses/PropertyGroup/list.json');
 
         Http::fake([
             '*' => Http::response((array)json_decode($response))
@@ -32,7 +32,7 @@ class PropertyGroupEndpointTest extends BaseTest
      * @test
      */
     public function it_can_retrieve_a_single_property_group() {
-        $response = file_get_contents(__DIR__.'/Responses/PropertyGroup/single.json');
+        $response = file_get_contents(__DIR__.'/../Responses/PropertyGroup/single.json');
 
         Http::fake([
             '*' => Http::response((array)json_decode($response))

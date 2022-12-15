@@ -15,7 +15,7 @@ class PaymentMethodEndpointTest extends BaseTest
      * @test
      */
     public function it_can_retrieve_a_list_of_payment_methods() {
-        $response = file_get_contents(__DIR__.'/Responses/PaymentMethod/list.json');
+        $response = file_get_contents(__DIR__.'/../Responses/PaymentMethod/list.json');
 
         Http::fake([
             '*' => Http::response((array)json_decode($response))
@@ -32,7 +32,7 @@ class PaymentMethodEndpointTest extends BaseTest
      * @test
      */
     public function it_can_retrieve_a_single_payment_method() {
-        $response = file_get_contents(__DIR__.'/Responses/PaymentMethod/single.json');
+        $response = file_get_contents(__DIR__.'/../Responses/PaymentMethod/single.json');
 
         Http::fake([
             '*' => Http::response((array)json_decode($response))

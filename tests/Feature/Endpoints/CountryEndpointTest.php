@@ -15,7 +15,7 @@ class CountryEndpointTest extends BaseTest
      * @test
      */
     public function it_can_retrieve_a_list_of_countries() {
-        $response = file_get_contents(__DIR__.'/Responses/Country/list.json');
+        $response = file_get_contents(__DIR__.'/../Responses/Country/list.json');
 
         Http::fake([
             '*' => Http::response((array)json_decode($response))
@@ -32,7 +32,7 @@ class CountryEndpointTest extends BaseTest
      * @test
      */
     public function it_can_retrieve_a_single_country() {
-        $response = file_get_contents(__DIR__.'/Responses/Country/single.json');
+        $response = file_get_contents(__DIR__.'/../Responses/Country/single.json');
 
         Http::fake([
             '*' => Http::response((array)json_decode($response))

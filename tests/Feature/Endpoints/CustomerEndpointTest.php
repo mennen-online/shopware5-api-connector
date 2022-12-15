@@ -15,7 +15,7 @@ class CustomerEndpointTest extends BaseTest
      * @test
      */
     public function it_can_retrieve_a_list_of_customers() {
-        $response = file_get_contents(__DIR__.'/Responses/Customer/list.json');
+        $response = file_get_contents(__DIR__.'/../Responses/Customer/list.json');
 
         Http::fake([
             '*' => Http::response((array)json_decode($response))
@@ -32,7 +32,7 @@ class CustomerEndpointTest extends BaseTest
      * @test
      */
     public function it_can_retrieve_a_single_customer() {
-        $response = file_get_contents(__DIR__.'/Responses/Customer/single.json');
+        $response = file_get_contents(__DIR__.'/../Responses/Customer/single.json');
 
         Http::fake([
             '*' => Http::response((array)json_decode($response))

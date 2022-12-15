@@ -105,6 +105,7 @@ abstract class Shopware5ApiConnector
         }
 
         $this->client = Http::baseUrl($baseUrl.'/api')
+            ->timeout(0)
             ->withToken(base64_encode($this->username.':'.$this->password), 'Basic')
             ->acceptJson();
 
@@ -126,10 +127,8 @@ abstract class Shopware5ApiConnector
         if (method_exists($this, $name)) {
             return $this->$name($arguments);
         }
+
         $instance = self::__callStatic($name, $arguments);
-        if (! $instance) {
-            throw new Shopware5EndpointNotFoundException('Shopware 5 Endpoint '.$name.' not available yet');
-        }
 
         return new (get_class($instance)($this->client, $this->expires_in, $this->token));
     }

@@ -15,7 +15,7 @@ class VariantEndpointTest extends BaseTest
      * @test
      */
     public function it_can_retrieve_a_list_of_variants() {
-        $response = file_get_contents(__DIR__.'/Responses/Variant/list.json');
+        $response = file_get_contents(__DIR__.'/../Responses/Variant/list.json');
 
         Http::fake([
             '*' => Http::response((array)json_decode($response))
@@ -32,7 +32,7 @@ class VariantEndpointTest extends BaseTest
      * @test
      */
     public function it_can_retrieve_a_single_variant() {
-        $response = file_get_contents(__DIR__.'/Responses/Variant/single.json');
+        $response = file_get_contents(__DIR__.'/../Responses/Variant/single.json');
 
         Http::fake([
             '*' => Http::response((array)json_decode($response))

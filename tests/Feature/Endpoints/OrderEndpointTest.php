@@ -15,7 +15,7 @@ class OrderEndpointTest extends BaseTest
      * @test
      */
     public function it_can_retrieve_a_list_of_orders() {
-        $response = file_get_contents(__DIR__.'/Responses/Order/list.json');
+        $response = file_get_contents(__DIR__.'/../Responses/Order/list.json');
 
         Http::fake([
             '*' => Http::response((array)json_decode($response))
@@ -32,7 +32,7 @@ class OrderEndpointTest extends BaseTest
      * @test
      */
     public function it_can_retrieve_a_single_order() {
-        $response = file_get_contents(__DIR__.'/Responses/Order/single.json');
+        $response = file_get_contents(__DIR__.'/../Responses/Order/single.json');
 
         Http::fake([
             '*' => Http::response((array)json_decode($response))
