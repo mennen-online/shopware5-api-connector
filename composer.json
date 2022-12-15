@@ -18,9 +18,6 @@
         "laravel": {
             "providers": [
                 "MennenOnline\\Shopware5ApiConnector\\Shopware5ApiConnectorServiceProvider"
-            ],
-            "facades": [
-                "MennenOnline\\Shopware5ApiConnector\\Facades\\ProductFacade"
             ]
         }
     },

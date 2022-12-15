@@ -1,6 +1,6 @@
 <?php
 
-namespace MennenOnline\Shopware5ApiConnector\Tests\Feature\Endpoints;
+namespace Feature\Endpoints;
 
 use MennenOnline\Shopware5ApiConnector\Endpoints\Endpoint;
 use MennenOnline\Shopware5ApiConnector\Tests\BaseTest;
