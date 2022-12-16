@@ -203,11 +203,19 @@ abstract class Shopware5ApiConnector
 
             $limitResponse = $limitRequest->object();
 
-            $limit = $limitResponse?->total;
+            if(property_exists('total', $limitResponse)) {
+                $limit = $limitResponse?->total;
+            }
+        }
+
+        $url = str($this->buildUrl($endpoint));
+
+        if($limit) {
+            $url = $url->append('?'.Arr::query(['limit' => $limit]));
         }
 
         return $this->logger(
-            $this->client->get(str($this->buildUrl($endpoint))->append('?'.Arr::query(['limit' => $limit]))->toString())
+            $this->client->get($url->toString())
         );
     }
 
