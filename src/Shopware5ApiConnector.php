@@ -203,7 +203,7 @@ abstract class Shopware5ApiConnector
 
             $limitResponse = $limitRequest->object();
 
-            if(property_exists($limitResponse, 'total')) {
+            if(is_object($limitResponse) && property_exists($limitResponse, 'total')) {
                 $limit = $limitResponse?->total;
             }
         }
