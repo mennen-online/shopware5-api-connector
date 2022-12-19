@@ -66,7 +66,6 @@ abstract class Shopware5ApiConnector
         protected PendingRequest|null $client = null,
         protected int|null $expires_in = null,
         protected string|null $token = null,
-        protected string|null $responseModel = null,
         protected string|null $id = null,
         protected bool $auth = false,
         protected string|null $url = null,
@@ -177,7 +176,7 @@ abstract class Shopware5ApiConnector
         return new BaseResponseModel(
             model: $this->id !== null ? Model::SINGLE : Model::INDEX,
             attributes: $response->object(),
-            mapClassForData: $this->responseModel
+            mapClassForData: EndpointEnum::getModelForEndpoint($this->endpoint, $this->id !== null ? Model::SINGLE : Model::INDEX)
         );
     }
 
