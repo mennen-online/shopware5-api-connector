@@ -8,8 +8,8 @@ use MennenOnline\Shopware5ApiConnector\Facades\MediaFacade;
 use MennenOnline\Shopware5ApiConnector\Models\BaseResponseModel;
 use MennenOnline\Shopware5ApiConnector\Models\Endpoints\Manufacturer\ManufacturerListModel;
 use MennenOnline\Shopware5ApiConnector\Models\Endpoints\Manufacturer\ManufacturerSingleModel;
-use MennenOnline\Shopware5ApiConnector\Models\Endpoints\Media\MediaListModel;
-use MennenOnline\Shopware5ApiConnector\Models\Endpoints\Media\MediaSingleModel;
+use MennenOnline\Shopware5ApiConnector\Models\Endpoints\Medium\MediumListModel;
+use MennenOnline\Shopware5ApiConnector\Models\Endpoints\Medium\MediumSingleModel;
 use MennenOnline\Shopware5ApiConnector\Tests\BaseTest;
 
 class MediaEndpointTest extends BaseTest
@@ -28,7 +28,7 @@ class MediaEndpointTest extends BaseTest
 
         $this->assertInstanceOf(BaseResponseModel::class, $result);
 
-        $this->assertInstanceOf(MediaListModel::class, $result->data->first());
+        $this->assertInstanceOf(MediumListModel::class, $result->data->first());
     }
 
     /**
@@ -45,6 +45,6 @@ class MediaEndpointTest extends BaseTest
 
         $this->assertInstanceOf(BaseResponseModel::class, $result);
 
-        $this->assertInstanceOf(MediaSingleModel::class, $result->data);
+        $this->assertInstanceOf(MediumSingleModel::class, $result->data);
     }
 }

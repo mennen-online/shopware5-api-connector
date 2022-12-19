@@ -4,7 +4,7 @@ namespace MennenOnline\Shopware5ApiConnector\Enums;
 
 enum Model: string
 {
-    case INDEX = 'index';
+    case INDEX = 'list';
 
     case SINGLE = 'single';
 

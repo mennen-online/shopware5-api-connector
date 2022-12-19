@@ -48,4 +48,8 @@ enum EndpointEnum
 
         return $url->lower()->camel()->toString();
     }
+
+    public static function getModelForEndpoint(EndpointEnum $endpointEnum, Model $modelType): string {
+        return "MennenOnline\\Shopware5ApiConnector\\Models\\Endpoints\\" . str(self::convertEndpointToUrl($endpointEnum))->singular()->ucfirst() . "\\" . str($endpointEnum->name)->lower()->camel()->singular()->ucfirst()->toString() . str($modelType->value)->ucfirst()->toString() . "Model";
+    }
 }
